@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Running all tests"
+cd microservices/FinanciamentoVeiculosStudy/
+./mvnw clean package
+# If m returned anything other than 0, the tests failed...
+if [[ $? != 0 ]] ; then
+  echo "Aborting commit due to failed tests."
+  exit 1
+fi

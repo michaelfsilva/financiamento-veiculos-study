@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+    sql-server:
+        container_name: sql-server
+        build: microservices/FinanciamentoVeiculosStudy/misc/docker/sql_server/
+        ports:
+            - "1533:1433"
+
+    microservice:
+        container_name: microservice
+        image: openjdk:8-jre
+        command: java -jar -Dspring.profiles.active=dev /app/financiamentoveiculosstudy-v1.jar
+        volumes: 
+            - "./microservices/FinanciamentoVeiculosStudy/target/:/app"
+        ports: 
+            - "4080:8080"
+        depends_on:
+            - sql-server
+
+    bff:
+        container_name: bff
+        image: node:alpine
+        working_dir: /app
+        command: npm start
+        volumes: 
+            - "./front-end/bff/financiamento-veiculos-study-bff/:/app"
+            - "./front-end/bff/financiamento-veiculos-study-bff/node_modules/:/app/node_modules"
+        ports: 
+            - "8000:8000"
+        depends_on: 
+            - microservice
+        environment:
+            - NODE_ENV=production
+
+    front-end:
+        container_name: front-end
+        image: nginx:alpine
+        volumes: 
+            - "./front-end/financiamento-veiculos-study-web/dist/financiamento-veiculos-study-web/:/usr/share/nginx/html"
+        ports: 
+            - "4300:80"
+        depends_on:
+            - bff

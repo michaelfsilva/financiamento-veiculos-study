@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1533;databaseName=financiamento_veiculos
+    username: veiculos
+    password: Fin.veiculos
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+
+test:
+  frontend:
+    url: http://localhost:4300

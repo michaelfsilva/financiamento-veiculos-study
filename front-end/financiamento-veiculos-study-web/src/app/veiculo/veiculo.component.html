@@ -1,0 +1,51 @@
+<div class="container text-center dados">
+    <h4 class="mb-1">Faça sua simulação de financiamento aqui</h4>
+
+    <h6 class="mb-2">Selecione os dados do veículo</h6>
+
+    <div class="col-lg-5 mx-auto">
+      <form id="veiculoForm">
+        <div class="control-group">
+            <div class="form-group mb-0 pb-2">
+                <select (change)="onMarcaSelected($event.target.value)" name="marcas" id="marcas" class="form-control">
+                    <option value="" selected disabled hidden>Marca</option>
+                    <option [value]="marca.id" *ngFor="let marca of marcas">{{marca.fipeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="form-group mb-0 pb-2">
+                <select (change)="onModeloSelected($event.target.value)" name="modelos" id="modelos" class="form-control">
+                    <option value="" selected disabled hidden>Modelo</option>
+                    <option [value]="modelo.id" *ngFor="let modelo of modelos">{{modelo.fipeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="form-group mb-0 pb-2">
+                <select (change)="onAnoSelected($event.target.value)" name="anos" id="anos" class="form-control">
+                    <option value="" selected disabled hidden>Ano</option>
+                    <option [value]="ano.id" *ngFor="let ano of anos">{{ano.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="valor-real form-group floating-label-form-group controls mb-0 pb-2">
+                <label>R$</label>
+                <input type="text" class="form-control" name="valorVeiculo" placeholder="Valor do veículo" maxlength="14" (keyup)="valorVeiculo=inputCurrency($event.target.value)" [(ngModel)]="valorVeiculo"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="valor-real form-group floating-label-form-group controls mb-0 pb-2">
+                <label>R$</label>
+                <input type="text" class="form-control" name="valorEntrada" placeholder="Valor da entrada" maxlength="14" (keyup)="valorEntrada=inputCurrency($event.target.value)" [(ngModel)]="valorEntrada"/>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <button id="voltar" [routerLink]="'/'"  type="button" class="btn btn-secondary btn-voltar">Voltar</button>
+            <button id="simular" (click)="simular()" type="button" class="btn btn-primary">Simular</button>
+        </div>
+      </form>
+    </div>
+  </div>

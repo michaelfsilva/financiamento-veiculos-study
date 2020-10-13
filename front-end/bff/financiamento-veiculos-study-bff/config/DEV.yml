@@ -1,0 +1,3 @@
+app:
+    port: 8000
+    rest_version: 'v1'

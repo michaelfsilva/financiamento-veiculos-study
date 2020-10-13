@@ -1,0 +1,15 @@
+app:
+    port: 8000
+    rest_version: 'v1'
+
+log:
+    level: debug
+    output: ./logs/
+    filename: logs.log
+    maxfilesize: 5242880
+    maxfiles: 5
+
+FinanciamentoVeiculosStudy:
+    #base: 'http://localhost:8080'
+    endpoints:
+        simulacao: 'http://microservice:8080/v1/simular'

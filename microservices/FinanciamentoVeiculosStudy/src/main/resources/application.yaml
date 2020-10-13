@@ -1,0 +1,33 @@
+info:
+  app:
+    name: Financiamento Veiculos Study Microservice
+    description: API to simulate financing values
+    version: 1.0
+
+spring:
+  profiles:
+    active: local
+  security:
+    user:
+      name: financiamento
+      password: veiculos
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
+    show-sql: true
+  liquibase:
+    # Disable liquibase to start application
+    enabled: false
+    change-log: classpath:/db/sql_server/db-changelog.yaml
+
+feign:
+  rest:
+    simulacao:
+      name: "simulacao"
+      url: "http://localhost:8080/"
+      headers:
+        username: "financiamento"
+        password: "veiculos"

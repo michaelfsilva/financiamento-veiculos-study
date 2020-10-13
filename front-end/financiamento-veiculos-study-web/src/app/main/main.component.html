@@ -1,0 +1,65 @@
+<div class="container text-center dados">
+  <h4 class="mb-1">Faça sua simulação de financiamento aqui</h4>
+  <h6 class="mb-2">Preencha seus dados</h6>
+
+  <div class="col-lg-5 mx-auto">
+    <form id="usuarioForm" [formGroup]="clienteForm" novalidate (ngSubmit)="submit()">
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <input formControlName="nome" autofocus type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Nome">
+          <span class="text-danger"
+              *ngIf="clienteFormControl.nome.touched && !clienteFormControl.nome.valid">
+              Preencha seu nome
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <input formControlName="cpf" type="text" class="form-control" name="cpf" placeholder="CPF" maxlength="14" [value]="clienteForm.value.cpf | mask: '000.000.000-99'">
+          <span class="text-danger"
+              *ngIf="clienteFormControl.cpf.touched && !clienteFormControl.cpf.valid">
+              CPF Inválido
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <input formControlName="dataNascimento" type="text" onblur="this.type = this.value==''?'text':'date'" onfocus="this.type='date'" class="form-control" min="1900-01-01" max="2200-12-31" name="dataNascimento" placeholder="Data de Nascimento">
+          <span class="text-danger"
+              *ngIf="clienteFormControl.dataNascimento.touched && !clienteFormControl.dataNascimento.valid">
+              {{dataNascimentoMsg}}
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <input formControlName="telefone" type="text" class="form-control" name="telefone" placeholder="Telefone" maxlength="15" [value]="clienteForm.value.telefone | mask: '(00) 00000-0000'">
+          <span class="text-danger"
+              *ngIf="clienteFormControl.telefone.touched && !clienteFormControl.telefone.valid">
+              Telefone Inválido
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <div class="valor-real">
+            <label>R$</label>
+            <input formControlName="renda" type="text" class="form-control" name="renda" placeholder="Renda" maxlength="14" (keyup)="clienteForm.controls.renda.setValue(inputCurrency($event.target.value))"/>
+          </div>
+          <span class="text-danger"
+                *ngIf="clienteFormControl.renda.touched && !clienteFormControl.renda.valid">
+                {{rendaMsg}}
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="form-check">
+        <input formControlName="possuiImovel" type="checkbox" class="form-check-input" id="possuiImovel">
+        <label class="form-check-label" for="possuiImovel">Possui imovel?</label>
+      </div>
+      <div class="form-group">
+        <button id="proximo" type="submit" class="btn btn-primary">Próximo</button>
+      </div>
+    </form>
+  </div>
+</div>

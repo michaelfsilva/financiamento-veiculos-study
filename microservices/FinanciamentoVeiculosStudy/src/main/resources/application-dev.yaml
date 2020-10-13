@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://sql-server;databaseName=financiamento_veiculos
+    username: veiculos
+    password: Fin.veiculos
+
+test:
+  frontend:
+    url: http://172.16.38.93:4300
