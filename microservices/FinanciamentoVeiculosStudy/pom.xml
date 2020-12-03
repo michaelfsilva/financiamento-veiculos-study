@@ -269,6 +269,9 @@
     <profiles>
         <profile>
             <id>local</id>
+            <properties>
+                <activatedProperties>local</activatedProperties>
+            </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -278,6 +281,9 @@
         </profile>
         <profile>
             <id>dev</id>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+            </properties>
             <properties>
                 <liquibase.changeLogFile>./db/sql_server/db-changelog.yaml</liquibase.changeLogFile>
             </properties>

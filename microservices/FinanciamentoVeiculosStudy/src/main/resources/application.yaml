@@ -6,7 +6,7 @@ info:
 
 spring:
   profiles:
-    active: local
+    active: @activatedProperties@
   security:
     user:
       name: financiamento
